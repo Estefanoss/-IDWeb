@@ -42,3 +42,18 @@ body {
 .form-input:invalid:touched {
     border-color: #e53e3e;
 }
+
+fieldset {
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #f8fafc;
+}
+
+legend {
+    font-weight: 600;
+    color: #0f172a;
+    padding: 0 10px;
+    font-size: 1.05rem;
+}
