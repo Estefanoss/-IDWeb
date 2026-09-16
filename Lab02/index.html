@@ -57,7 +57,9 @@
                     id="date" 
                     name="date" 
                     class="form-input"
-                    required placeholder="Al menos 1 mayúsula y 1 número">
+                    required
+                    min="2007-01-01"
+                    max="2011-01-01">
             </div>
 
             <label for="number" class="form-label">Edad: </label>
@@ -83,9 +85,54 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label>Turno</label>
+                <div class="radio-group">
+                    <label for="mañana" class="radio-label">  
+                        <input 
+                        type="radio" 
+                        id="mañana" 
+                        name="turno" 
+                        value="mañana" 
+                        required>
+                        Mañana
+                    </label>
+
+                    <label for="tarde" class="radio-label">
+                        <input 
+                        type="radio" 
+                        id="tarde" 
+                        name="turno" 
+                        value="tarde">
+                        Tarde
+                    </label>
+
+                    <label for="noche" class="radio-label">
+                        <input 
+                        type="radio" 
+                        id="noche" 
+                        name="turno" 
+                        value="noche">
+                        Noche
+                    </label>
+    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comentarios"> <p>Comentarios:</p></label>
+                <textarea 
+                id="comentarios"
+                name="comentarios"
+                rows="4"
+                placeholder="Ingrese algún comentario"
+                ></textarea>
+            </div>
+            
             <div class="form-group checkbox-group">
                 <label for="terminos" class="checkbox-label">
-                    <input type="checkbox" id="terminos" name="terminos" required>
+                    <input 
+                    type="checkbox" id="terminos" name="terminos" required>
                     Acepto los términos y condiciones del sistema académico.
                 </label>
             </div>
@@ -94,4 +141,4 @@
     </form>
 </main>
 
-<footer> Derechos reservados. Oscar Estefano Bobadilla Soto</footer>
+<footer> Derechos reservados. Oscar Estefano Bobadilla Soto.</footer>
