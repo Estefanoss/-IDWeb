@@ -16,7 +16,18 @@
 
     <form action="/procesar" method="get" class="form-container">
         <fieldset>
-            <legend>Datos de Acceso</legend>
+            <legend>Datos personales</legend>
+
+            <div class="form-group">
+            <label for="nombres">Nombres y Apellidos Completos: </label>
+            <input 
+              type="text" 
+              id="nombres" 
+              name="nombres" 
+              required placeholder="Ej. Oscar Bobadilal Soto." 
+              required
+            >
+          </div>
 
             <div class="form-group">
                 <label for="number" class="form-label">CUI: </label>
@@ -28,26 +39,6 @@
                     pattern="[0-9]{8}" 
                     title="El código debe tener exactamente 8 dígitos numéricos"
                 >
-            </div>
-
-            <div class="form-group">
-                <label for="email" class="form-label">Correo Institucional:</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    class="form-input"
-                    required placeholder="usuario@universidad.edu.pe">
-            </div>
-
-            <div class="form-group">
-                <label for="password" class="form-label">Contraseña: </label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    class="form-input"
-                    required placeholder="Al menos 1 mayúsula y 1 número">
             </div>
 
             <div class="form-group">
@@ -73,6 +64,31 @@
                     max="30"
                     >
             </div>
+            
+        </fieldset>
+
+        <fieldset>
+            <legend>Datos académicos</legend>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Correo Institucional:</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-input"
+                    required placeholder="usuario@universidad.edu.pe">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Contraseña: </label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="form-input"
+                    required placeholder="Al menos 1 mayúsula y 1 número">
+            </div>
 
             <div class="form-group">
                 <label for="carrera">Carrera Profesional </label>
@@ -85,7 +101,7 @@
                 </select>
             </div>
 
-            <div class="form-group">
+              <div class="form-group">
                 <label>Turno</label>
                 <div class="radio-group">
                     <label for="mañana" class="radio-label">  
@@ -119,7 +135,10 @@
                 </div>
             </div>
 
-            <div class="form-group">
+
+        </fieldset>
+
+        <div class="form-group">
                 <label for="comentarios"> <p>Comentarios:</p></label>
                 <textarea 
                 id="comentarios"
@@ -128,8 +147,8 @@
                 placeholder="Ingrese algún comentario"
                 ></textarea>
             </div>
-            
-            <div class="form-group checkbox-group">
+
+        <div class="form-group checkbox-group">
                 <label for="terminos" class="checkbox-label">
                     <input 
                     type="checkbox" id="terminos" name="terminos" required>
@@ -137,7 +156,6 @@
                 </label>
             </div>
             
-        </fieldset>
     </form>
 </main>
 
