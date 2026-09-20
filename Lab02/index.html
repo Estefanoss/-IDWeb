@@ -1,162 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registro para sistema de gestión académica</title>
-        <link rel="stylesheet" href="estilos.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro para sistema de gestión académica</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
 <body>
 
-<main>
+    <main class="contenedor">
+        <div class="card">
+            <header class="card-header">
+                <h1>Registro de Estudiantes</h1> 
+            </header>
 
-    <header class="card-header">
-        <h1>Registro de Estudiantes</h1>
-    </header>
+            <form action="/procesar" method="get" class="form-container">
+                
+                <fieldset>
+                    <legend>Datos personales</legend>
 
-    <form action="/procesar" method="get" class="form-container">
-        <fieldset>
-            <legend>Datos personales</legend>
-
-            <div class="form-group">
-            <label for="nombres">Nombres y Apellidos Completos: </label>
-            <input 
-              type="text" 
-              id="nombres" 
-              name="nombres" 
-              required placeholder="Ej. Oscar Bobadilal Soto." 
-              required
-            >
-          </div>
-
-            <div class="form-group">
-                <label for="number" class="form-label">CUI: </label>
-                <input
-                    type="number" 
-                    id="number" 
-                    name="number" 
-                    required placeholder="Ej. 20261188" 
-                    pattern="[0-9]{8}" 
-                    title="El código debe tener exactamente 8 dígitos numéricos"
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="date" class="form-label">Fecha de nacimiento: </label>
-                <input 
-                    type="date" 
-                    id="date" 
-                    name="date" 
-                    class="form-input"
-                    required
-                    min="2007-01-01"
-                    max="2011-01-01">
-            </div>
-
-            <label for="number" class="form-label">Edad: </label>
-                <input 
-                    type="number" 
-                    id="number" 
-                    name="number" 
-                    class="form-input"
-                    required placeholder="17-30"
-                    min="17"
-                    max="30"
-                    >
-            </div>
-            
-        </fieldset>
-
-        <fieldset>
-            <legend>Datos académicos</legend>
-
-            <div class="form-group">
-                <label for="email" class="form-label">Correo Institucional:</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    class="form-input"
-                    required placeholder="usuario@universidad.edu.pe">
-            </div>
-
-            <div class="form-group">
-                <label for="password" class="form-label">Contraseña: </label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    class="form-input"
-                    required placeholder="Al menos 1 mayúsula y 1 número">
-            </div>
-
-            <div class="form-group">
-                <label for="carrera">Carrera Profesional </label>
-                <select id="carrera" name="carrera" required>
-                    <option value="" disabled selected> Seleccione una carrera </option>
-                    <option value="sistemas">Ing. de Sistemas</option>
-                    <option value="industrial">Ing. Industrial</option>
-                    <option value="telecomunicaciones">Ing. de Telecomunicaciones</option>
-                    <option value="computacion">Cs. de la Computación</option>
-                </select>
-            </div>
-
-              <div class="form-group">
-                <label>Turno</label>
-                <div class="radio-group">
-                    <label for="mañana" class="radio-label">  
+                    <div class="form-group">
+                        <label for="nombres" class="form-label">Nombres y Apellidos Completos:</label>
                         <input 
-                        type="radio" 
-                        id="mañana" 
-                        name="turno" 
-                        value="mañana" 
-                        required>
-                        Mañana
-                    </label>
+                            type="text" 
+                            id="nombres" 
+                            name="nombres" 
+                            class="form-input" 
+                            placeholder="Ej. Oscar Bobadilla Soto" 
+                            required
+                        >
+                    </div>
 
-                    <label for="tarde" class="radio-label">
+                    <div class="form-group">
+                        <label for="cui" class="form-label">CUI:</label>
                         <input 
-                        type="radio" 
-                        id="tarde" 
-                        name="turno" 
-                        value="tarde">
-                        Tarde
-                    </label>
+                            type="text" 
+                            id="cui" 
+                            name="cui" 
+                            class="form-input" 
+                            placeholder="Ej. 20261188" 
+                            pattern="[0-9]{8}" 
+                            title="El código debe tener exactamente 8 dígitos numéricos" 
+                            required
+                        >
+                    </div>
 
-                    <label for="noche" class="radio-label">
+                    <div class="form-group">
+                        <label for="fecha" class="form-label">Fecha de nacimiento:</label>
                         <input 
-                        type="radio" 
-                        id="noche" 
-                        name="turno" 
-                        value="noche">
-                        Noche
-                    </label>
-    
+                            type="date" 
+                            id="fecha" 
+                            name="fecha" 
+                            class="form-input" 
+                            min="2000-01-01" 
+                            max="2010-01-01" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edad" class="form-label">Edad:</label>
+                        <input 
+                            type="number" 
+                            id="edad" 
+                            name="edad" 
+                            class="form-input" 
+                            min="17" 
+                            max="30" 
+                            placeholder="17-30" 
+                            required
+                        >
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Datos académicos</legend>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Correo Institucional:</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="usuario@universidad.edu.pe" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Contraseña:</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            pattern="(?=.*\d)(?=.*[A-Z]).{8,}" 
+                            placeholder="Al menos 1 mayúscula y 1 número" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carrera" class="form-label">Carrera Profesional:</label>
+                        <select id="carrera" name="carrera" class="form-input" required>
+                            <option value="" disabled selected>Seleccione una carrera</option>
+                            <option value="sistemas">Ing. de Sistemas</option>
+                            <option value="industrial">Ing. Industrial</option>
+                            <option value="telecomunicaciones">Ing. de Telecomunicaciones</option>
+                            <option value="computacion">Cs. de la Computación</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Turno:</label>
+                        <div class="radio-group">
+                            <label for="manana" class="radio-label">
+                                <input 
+                                type="radio" 
+                                id="manana" 
+                                name="turno" 
+                                value="manana" required
+                                > Mañana
+                            </label>
+                            <label for="tarde" class="radio-label">
+                                <input 
+                                type="radio"
+                                id="tarde" 
+                                name="turno" 
+                                value="tarde"
+                                > Tarde
+                            </label>
+                            <label for="noche" class="radio-label">
+                                <input type="radio" 
+                                id="noche" 
+                                name="turno" 
+                                value="noche"
+                                > Noche
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comentarios" class="form-label">Comentarios:</label>
+                        <textarea 
+                            id="comentarios" 
+                            name="comentarios" 
+                            class="form-input" 
+                            rows="3" 
+                            placeholder="Ingrese algún comentario"
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label for="terminos" class="checkbox-label">
+                            <input type="checkbox" id="terminos" name="terminos" required> 
+                            Acepto los términos y condiciones.
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="botones-group">
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <button type="reset" class="btn btn-secondary">Limpiar</button>
                 </div>
-            </div>
 
+            </form>
+        </div>
+    </main>
 
-        </fieldset>
+    <footer>
+        <p>Derechos reservados. Oscar Estefano Bobadilla Soto.</p>
+    </footer>
 
-        <div class="form-group">
-                <label for="comentarios"> <p>Comentarios:</p></label>
-                <textarea 
-                id="comentarios"
-                name="comentarios"
-                rows="4"
-                placeholder="Ingrese algún comentario"
-                ></textarea>
-            </div>
-
-        <div class="form-group checkbox-group">
-                <label for="terminos" class="checkbox-label">
-                    <input 
-                    type="checkbox" id="terminos" name="terminos" required>
-                    Acepto los términos y condiciones del sistema académico.
-                </label>
-            </div>
-            
-    </form>
-</main>
-
-<footer> Derechos reservados. Oscar Estefano Bobadilla Soto.</footer>
+</body>
+</html>
