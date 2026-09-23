@@ -1,3 +1,29 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.brand-title {
+    font-weight: 700;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column; 
+}
+
+@media (min-width: 992px) {
+    .nav-buttons {
+        flex-direction: row; 
+    }
+}
+
+.btn-registro {
+    font-weight: 700;
+}
+
 .hero-image {
     flex: 1;
     text-align: center;
@@ -9,4 +35,53 @@
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.course-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.course-card h3 {
+    font-size: 1.25rem;
+    color: #000000;
+    margin-bottom: 0.75rem;
+}
+
+.course-card p {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
 }
