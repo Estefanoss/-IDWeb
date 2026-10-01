@@ -1,9 +1,24 @@
 // app.js - Módulo de Gestión
 const form = document.querySelector('#todo-form');
-const input = document.querySelector('#todo-input');
+const inputTitulo = document.querySelector('#todo-titulo');
+const inputCurso = document.querySelector('#todo-curso');
+const inputFecha = document.querySelector('#todo-fecha');
 const list = document.querySelector('#todo-list');
+const alertContainer = document.querySelector('#alert-container');
+const filterButtons = document.querySelector('#filter-buttons');
 
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let tasks = JSON.parse(localStorage.getItem('academic_tasks')) || [];
+let currentFilter = 'todas';
+
+
+function showAlert(message, type = 'danger') {
+    alertContainer.innerHTML = `
+        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `;
+}
 
 function renderTasks() {
     list.innerHTML = '';
