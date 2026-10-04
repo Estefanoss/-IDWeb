@@ -14,9 +14,9 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
   const { method, url } = req;
-
   console.log(`Petición recibida: ${method} ${url}`);
 
+  //Constular lista de estudiantes
   if (url === '/api/estudiantes' && method === 'GET') {
     const dataPath = path.join(__dirname, 'data', 'estudiantes.json');
     fs.readFile(dataPath, (err, content) => {
@@ -28,26 +28,80 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(content);
     });
-  } else if (url === '/' && method === 'GET') {
-    const filePath = path.join(__dirname, 'public', 'index.html');
 
-    fs.readFile(filePath, (err, content) => {
+    //Registro de estudiantes
+    } else if (url === '/api/estudiantes' && method === 'POST') {
+      let body = '';
+
+      req.on('data', (chunk) => {
+        body += chunk.toString();
+      });
+
+    req.on('end', () => {
+      try {
+        const nuevoEstudiante = JSON.parse(body);
+        const dataPath = path.join(__dirname, 'data', 'estudiantes.json');
+        //Lectura actual 
+        fs.readFile(dataPath, 'utf8', (err, content) => {
+          if (err) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'Error al leer la base de datos' }));
+          }
+
+          const estudiantes = JSON.parse(content);
+          
+          // ID incremental
+          nuevoEstudiante.id = estudiantes.length > 0 ? estudiantes[estudiantes.length - 1].id + 1 : 1;
+          
+          estudiantes.push(nuevoEstudiante);
+
+          //lectura actualizada
+          fs.writeFile(dataPath, JSON.stringify(estudiantes, null, 2), (errWrite) => {
+            if (errWrite) {
+              res.writeHead(500, { 'Content-Type': 'application/json' });
+              return res.end(JSON.stringify({ error: 'Error al escribir el registro' }));
+            }
+
+            res.writeHead(201, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(nuevoEstudiante));
+          });
+        });
+
+      } catch (parseErr) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Formato JSON no válido en el cuerpo de la solicitud' }));
+      }
+    });
+
+  //Archivos estaticos
+  } else if (method === 'GET') {
+    const relativeFilePath = url === '/' ? 'index.html' : url;
+    const safeFilePath = path.join(__dirname, 'public', relativeFilePath);
+    const extname = String(path.extname(safeFilePath)).toLowerCase();
+    const contentType = MIME_TYPES[extname] || 'application/octet-stream';
+
+    //Lectura archivo solicitado
+    fs.readFile(safeFilePath, (err, content) => {
       if (err) {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Error interno del servidor');
+        if (err.code === 'ENOENT') {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ message: 'Recurso estático no encontrado (404)' }));
+        } else {
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.end('Error interno al leer el archivo');
+        }
       } else {
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.writeHead(200, { 'Content-Type': contentType });
         res.end(content);
       }
     });
-  } else if (url === '/api/status' && method === 'GET') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'OK', uptime: process.uptime() }));
+
   } else {
     res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ message: 'Recurso no encontrado' }));
+    res.end(JSON.stringify({ message: 'Ruta o método no soportado' }));
   }
 });
+
 
 server.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
