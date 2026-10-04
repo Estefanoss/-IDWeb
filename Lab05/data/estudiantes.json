@@ -3,5 +3,10 @@
     "id": 1,
     "nombre": "Oscar Estefano",
     "carrera": "Ingeniería de Sistemas"
+  },
+  {
+    "nombre": "Carlos Gomez",
+    "carrera": "Sistemas",
+    "id": 2
   }
 ]
