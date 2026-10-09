@@ -66,6 +66,34 @@ exports.createCurso = (req, res, next) => {
       data: nuevoCurso
     });
   } catch (error) {
+      next(error);
+    }
+  };
+  
+  exports.updateCurso = (req, res, next) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    const index = cursos.findIndex(c => c.id === id);
+
+    if (index === -1) {
+      return res.status(404).json({
+        status: 'fail',
+        message: `No se encontró el curso con ID ${id} para actualizar`
+      });
+    }
+
+    const { nombre, codigo, creditos } = req.body;
+
+    if (nombre !== undefined) cursos[index].nombre = nombre;
+    if (codigo !== undefined) cursos[index].codigo = codigo;
+    if (creditos !== undefined) cursos[index].creditos = parseInt(creditos, 10);
+
+    res.status(200).json({
+      status: 'success',
+      data: cursos[index]
+    });
+  } catch (error) {
     next(error);
   }
 };
+
