@@ -93,7 +93,29 @@ exports.createCurso = (req, res, next) => {
       data: cursos[index]
     });
   } catch (error) {
-    next(error);
-  }
-};
+      next(error);
+    }
+  };
 
+exports.deleteCurso = (req, res, next) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    const index = cursos.findIndex(c => c.id === id);
+
+    if (index === -1) {
+      return res.status(404).json({
+        status: 'fail',
+        message: `No se encontró el curso con ID ${id} para eliminar`
+      });
+    }
+
+    const cursoEliminado = cursos.splice(index, 1)[0];
+
+    res.status(200).json({
+      status: 'success',
+      message: `El curso '${cursoEliminado.nombre}' con ID ${id} fue eliminado correctamente`
+    });
+  } catch (error) {
+      next(error);
+    }
+  };
