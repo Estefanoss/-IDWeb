@@ -25,3 +25,17 @@ app.use((req, res, next) => {
     message: `La ruta '${req.originalUrl}' no existe en el servidor`
   });
 });
+
+app.use((err, req, res, next) => {
+  console.error('Error capturado:', err.stack);
+
+  res.status(500).json({
+    status: 'error',
+    message: 'Ocurrió un error interno en el servidor',
+    error: err.message
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor ejecutándose en http://localhost:${PORT}`);
+});
